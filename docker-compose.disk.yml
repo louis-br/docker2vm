@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  new-disk:
+    build:
+      context: ./new-disk
+    volumes:
+      - ./output:/output
+      - ./EFI:/EFI
+    environment:
+      - DIR=/output
+      - TOTAL_SIZE=2GB
+      - EFI_SIZE=261MiB
+      - LABEL=rootfs
