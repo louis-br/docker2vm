@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  ubuntu:
+    build:
+      context: ./distros/ubuntu
+    profiles: ["ubuntu"]

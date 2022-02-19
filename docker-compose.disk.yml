@@ -1,13 +1,13 @@
 version: "3.9"
 services:
-  new-disk:
+  disk:
     build:
-      context: ./new-disk
+      context: ./disk
     volumes:
       - ./output:/output
-      - ./EFI:/EFI
+      - ./bootloaders/${BOOTLOADER:-grub}/EFI:/EFI
     environment:
-      - DIR=/output
-      - TOTAL_SIZE=2GB
-      - EFI_SIZE=261MiB
-      - LABEL=rootfs
+      - DIR=${DIR:-/output}
+      - TOTAL_SIZE=${TOTAL_SIZE:-2GB}
+      - EFI_SIZE=${EFI_SIZE:-261MiB}
+      - LABEL=${LABEL:-rootfs}

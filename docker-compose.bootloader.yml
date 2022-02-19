@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  grub:
+    build:
+      context: ./bootloaders/grub
+    volumes:
+      - ./bootloaders/grub/EFI:/EFI
+    profiles: ["grub"]

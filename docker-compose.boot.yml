@@ -1,7 +1,0 @@
-version: "3.9"
-services:
-  boot:
-    build:
-      context: ./boot
-    volumes:
-      - ./EFI:/EFI
