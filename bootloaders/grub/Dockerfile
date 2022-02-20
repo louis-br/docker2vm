@@ -7,7 +7,8 @@ RUN grub-mkstandalone -d "/usr/lib/grub/x86_64-efi" -O x86_64-efi --modules="par
 ARG VMLINUZ
 ARG INITRAMFS
 ARG KERNEL_PARAMETERS
-ENV VMLINUZ="${VMLINUZ}" INITRAMFS="${INITRAMFS}" KERNEL_PARAMETERS="${KERNEL_PARAMETERS}"
+ARG UUID
+ENV VMLINUZ="${VMLINUZ}" INITRAMFS="${INITRAMFS}" KERNEL_PARAMETERS="${KERNEL_PARAMETERS}" UUID="${UUID}"
 COPY grub.cfg /
 RUN envsubst < /grub.cfg > grub.cfg
 CMD ["cp", "--recursive", "--verbose", "--no-target-directory", "/out/EFI", "/EFI"]

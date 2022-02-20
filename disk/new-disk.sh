@@ -49,7 +49,7 @@ IDIR=$DIR ODIR=/ pack "extract"
 mkdir /rootfs && cd /rootfs
 tar xf /output/rootfs.tar
 #rm /output/rootfs.tar
-mkfs.ext4 -v -t ext4 -d /rootfs /disk.img2
+mkfs.ext4 -v -t ext4 -U $UUID -d /rootfs /disk.img2
 
 cd /
 mkfs.vfat /disk.img1

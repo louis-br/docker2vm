@@ -4,9 +4,10 @@ services:
     build:
       context: ./bootloaders/grub
       args:
-        - VMLINUZ=${VMLINUZ}
-        - INITRAMFS=${INITRAMFS}
-        - KERNEL_PARAMETERS=${KERNEL_PARAMETERS}
+        - VMLINUZ=${VMLINUZ:?err}
+        - INITRAMFS=${INITRAMFS:?err}
+        - KERNEL_PARAMETERS=${KERNEL_PARAMETERS:?err}
+        - UUID=${UUID:?err}
     volumes:
       - ./bootloaders/grub/EFI:/EFI
     profiles: ["grub"]
