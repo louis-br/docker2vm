@@ -3,11 +3,11 @@ services:
   disk:
     build:
       context: ./disk
-    volumes:
-      - ./output:/output
-      - ./bootloaders/${BOOTLOADER:-grub}/EFI:/EFI
     environment:
       - DIR=${DIR:-/output}
       - TOTAL_SIZE=${TOTAL_SIZE:-2GB}
       - EFI_SIZE=${EFI_SIZE:-261MiB}
       - LABEL=${LABEL:-rootfs}
+    volumes:
+      - ./output:/output
+      - ./bootloaders/${BOOTLOADER:-grub}/EFI:/EFI

@@ -3,6 +3,10 @@ services:
   grub:
     build:
       context: ./bootloaders/grub
+      args:
+        - VMLINUZ=${VMLINUZ}
+        - INITRAMFS=${INITRAMFS}
+        - KERNEL_PARAMETERS=${KERNEL_PARAMETERS}
     volumes:
       - ./bootloaders/grub/EFI:/EFI
     profiles: ["grub"]

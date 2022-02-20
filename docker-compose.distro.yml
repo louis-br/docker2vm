@@ -1,5 +1,9 @@
 version: "3.9"
 services:
+  alpine:
+    build:
+      context: ./distros/alpine
+    profiles: ["alpine"]
   ubuntu:
     build:
       context: ./distros/ubuntu

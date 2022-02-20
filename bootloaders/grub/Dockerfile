@@ -1,7 +1,13 @@
 FROM alpine:latest
-RUN apk add --no-cache grub grub-efi
+RUN apk add --no-cache grub grub-efi gettext
 WORKDIR /out/EFI/BOOT
 RUN echo 'configfile ${cmdpath}/grub.cfg' > /tmp/grub.cfg
 RUN grub-mkstandalone -d "/usr/lib/grub/x86_64-efi" -O x86_64-efi --modules="part_gpt part_msdos" \
     --locales="en@quot" --themes="" -o "/out/EFI/BOOT/bootx64.efi" "boot/grub/grub.cfg=/tmp/grub.cfg" -v 2> /grub.log
+ARG VMLINUZ
+ARG INITRAMFS
+ARG KERNEL_PARAMETERS
+ENV VMLINUZ="${VMLINUZ}" INITRAMFS="${INITRAMFS}" KERNEL_PARAMETERS="${KERNEL_PARAMETERS}"
+COPY grub.cfg /
+RUN envsubst < /grub.cfg > grub.cfg
 CMD ["cp", "--recursive", "--verbose", "--no-target-directory", "/out/EFI", "/EFI"]
