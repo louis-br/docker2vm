@@ -10,4 +10,3 @@ services:
         - UUID=${UUID:?err}
     volumes:
       - ./bootloaders/grub/EFI:/EFI
-    profiles: ["grub"]

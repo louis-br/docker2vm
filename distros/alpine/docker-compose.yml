@@ -1,0 +1,5 @@
+version: "3.9"
+services:
+  alpine:
+    build:
+      context: ./distros/alpine
