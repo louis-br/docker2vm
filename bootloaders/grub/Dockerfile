@@ -2,7 +2,7 @@ FROM alpine:latest
 RUN apk add --no-cache grub grub-efi gettext
 WORKDIR /out/EFI/BOOT
 RUN echo 'configfile ${cmdpath}/grub.cfg' > /tmp/grub.cfg
-RUN grub-mkstandalone -d "/usr/lib/grub/x86_64-efi" -O x86_64-efi --modules="part_gpt part_msdos" \
+RUN grub-mkstandalone -d "/usr/lib/grub/x86_64-efi" -O x86_64-efi --modules="part_gpt part_msdos efi_gop" \
     --locales="en@quot" --themes="" -o "/out/EFI/BOOT/bootx64.efi" "boot/grub/grub.cfg=/tmp/grub.cfg" -v 2> /grub.log
 ARG VMLINUZ
 ARG INITRAMFS
